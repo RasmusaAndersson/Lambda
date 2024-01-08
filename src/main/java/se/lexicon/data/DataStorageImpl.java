@@ -7,9 +7,12 @@ import se.lexicon.util.PersonGenerator;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+
+import static se.lexicon.Exercises.*;
 
 
 /**
@@ -48,8 +51,10 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public Person findOne(Predicate<Person> filter) {
-        //todo: implement the method
-        return null;
+        Optional<Person> result = storage.stream()
+                .filter(filter)
+                .findFirst();
+        return result.orElse(null);
     }
 
     @Override
